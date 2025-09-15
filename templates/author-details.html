@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Muallif {{ author.ism }}</title>
+</head>
+<body>
+    <h1>{{ author.ism }} ma'lumotlari</h1>
+    <hr>
+    <p>Jins: {{ author.jins }}</p>
+    <p>Tug'ilgan sana: {{ author.tugilgan_sana|date:"d.m.Y" }}</p>
+    <p>Kitoblar: {{ author.kitob_soni }} dona</p>
+    <p>{% if author.tirik == 'true' %} Tirik {% else %} Vafot etgan {% endif %}</p>
+</body>
+</html>

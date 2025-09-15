@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Kitoblar | O'chirishni tasdiqlash</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        p {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .cancel-btn {
+            background-color: #7f8c8d;
+            color: white;
+        }
+        .cancel-btn:hover {
+            background-color: #95a5a6;
+        }
+        .confirm-btn {
+            background-color: #c0392b;
+            color: white;
+        }
+        .confirm-btn:hover {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p><strong>{{ book.nom }}</strong> nomli asarni o'chirishni tasdiqlang:</p>
+        <a href="/books/">
+            <button class="btn cancel-btn">Bekor qilish</button>
+        </a>
+        <a href="/books/{{ book.id }}/delete/">
+            <button class="btn confirm-btn">Tasdiqlash</button>
+        </a>
+    </div>
+</body>
+</html>

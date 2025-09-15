@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Bitiruvchi Talabalar</title>
+</head>
+<body>
+    <h1>Bitiruvchi Talabalar</h1>
+    <hr>
+    <a href="/">Bosh sahifa</a>
+    <a href="/students/">Barcha talabalar</a>
+    {% for student in students %}
+        <p>{{ forloop.counter }}. {{ student.ism }}</p>
+    {% endfor %}
+</body>
+</html>

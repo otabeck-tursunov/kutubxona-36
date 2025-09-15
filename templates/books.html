@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kutubxona | Kitoblar ro'yxati</title>
+</head>
+<body>
+    <h1>Kitoblar ro'yxati</h1>
+    <hr>
+    <form style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+        <div  style="border: 1px solid black; border-radius: 10px; padding: 10px 20px;">
+            <input type="text" name="search" placeholder="Nom yoki muallif bo'yicha qidiring ..." {% if search %} value="{{ search }}"{% endif %}>
+            <button type="submit">Qidirish</button>
+        </div>
+        <div style="border: 1px solid black; border-radius: 10px; padding: 10px 20px;">
+            <label for="muallif_filter">Muallif: </label>
+            <select name="muallif_id" id="muallif_filter">
+                <option value="">Barchasi</option>
+                {% for author in authors %}
+                    <option value="{{ author.id }}" {% if muallif_id and muallif_id == author.id %} selected {% endif %} >{{ author.ism }}</option>
+                {% endfor %}
+            </select>
+            <button>Filter</button>
+        </div>
+    </form>
+    <hr>
+    <div style="margin: 0 auto; width: 300px; border: 1px solid black; border-radius: 10px; padding: 10px 20px;">
+        {% for book in books %}
+            <p>{{ forloop.counter }}. {{ book.nom }}
+                <a href="/books/{{ book.id }}/delete/confirm/">
+                    <button>O'chirish</button>
+                </a>
+            </p>
+        {% endfor %}
+    </div>
+    <hr>
+    <h3>Yangi kitob qo'shish</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Nom: </label>
+        <input type="text" name="nom" id="name" required>
+        <br><br>
+        <label for="genre">Janr: </label>
+        <input type="text" name="janr" id="genre" required>
+        <br><br>
+        <label for="pages">Sahifa: </label>
+        <input type="number" name="sahifa" id="pages" required>
+        <br><br>
+        <label for="author">Muallif: </label>
+        <select name="muallif_id" id="author">
+            {% for author in authors %}
+                <option value="{{ author.id }}">{{ author.ism }}</option>
+            {% endfor %}
+        </select>
+        <button>Qo'shish</button>
+    </form>
+
+</body>
+</html>

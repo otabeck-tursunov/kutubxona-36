@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mualliflar ro'yxati</title>
+</head>
+<body>
+    <h1>Mualliflar ro'yxati</h1>
+    <hr>
+    {% for author in authors %}
+        <p>{{ forloop.counter }}.
+            <a href="/authors/{{ author.id }}/">
+                {{ author.ism }}
+            </a>
+        </p>
+    {% endfor %}
+</body>
+</html>

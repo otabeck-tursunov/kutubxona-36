@@ -6,3 +6,5 @@ admin.site.register(Muallif)
 admin.site.register(Kitob)
 admin.site.register(Admin)
 admin.site.register(Record)
+
+

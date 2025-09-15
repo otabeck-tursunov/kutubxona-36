@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Talabalar ro'yxati</title>
+</head>
+<body>
+    <h1>Talabalar ro'yxati</h1>
+    <hr>
+    <form>
+        <input type="text" name="search" placeholder="Ism bo'yicha qidiring ..." {% if search %} value="{{ search }}" {% endif %}>
+        <button>Search</button>
+    </form>
+    <br>
+    <form>
+        <label for="order_input">Order By: </label>
+        <select id="order_input" name="ordering">
+            <option {% if ordering and ordering == "ism" %} selected {% endif %} value="ism" >Ism (a - z)</option>
+            <option {% if ordering and ordering == "-ism" %} selected {% endif %}  value="-ism">Ism (z - a)</option>
+            <option {% if ordering and ordering == "-kitob_soni" %} selected {% endif %}  value="-kitob_soni">Eng ko'p kitobga ega</option>
+            <option {% if ordering and ordering == "kitob_soni" %} selected {% endif %}  value="kitob_soni">Eng kam kitobga ega</option>
+        </select>
+        <button>Go</button>
+    </form>
+    <br>
+    <form>
+        <select name="kurs">
+            <option value="">Barchasi</option>
+            <option value="1" {% if kurs and kurs == "1" %} selected {% endif %}>1-kurs</option>
+            <option value="2" {% if kurs and kurs == "2" %} selected {% endif %}>2-kurs</option>
+            <option value="3" {% if kurs and kurs == "3" %} selected {% endif %}>3-kurs</option>
+            <option value="4" {% if kurs and kurs == "4" %} selected {% endif %}>4-kurs</option>
+        </select>
+        <button>Filter</button>
+    </form>
+    <hr>
+    <a href="/">Bosh sahifa</a>
+    <a href="/students-graduate/">Bitiruvchi talabalar</a>
+    {% for student in students %}
+        <p>
+            {{ forloop.counter }}.
+            <a href="/students/{{ student.id }}/">
+                {{ student.ism }}
+            </a>
+            <a href="/students/{{ student.id }}/delete/">
+                <button>O'chirish</button>
+            </a>
+        </p>
+    {% endfor %}
+    <hr>
+    <h3>Yangi talaba qo'shish</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Ism: </label>
+        <input id="name" type="text" name="ism" required>
+        <br><br>
+        <label for="group">Guruh: </label>
+        <input id="group" type="text" name="guruh" required>
+        <br><br>
+        <label for="course">Kurs: </label>
+        <input id="course" type="number" name="kurs" value="1" required>
+        <br><br>
+        <label for="books">Kitob soni: </label>
+        <input id="books" type="number" name="kitob_soni" value="0">
+        <br><br>
+        <button>Qo'shish</button>
+        <br><br>
+    </form>
+</body>
+</html>
+
